@@ -1,0 +1,30 @@
+services:
+  devcontainer:
+    build:
+      args:
+        IMAGE: ubuntu
+        TAG: "22.04"
+        PYTHON_VERSION: "3.11"
+      pull: true
+      dockerfile: .devcontainer/mojo_dev.dockerfile
+      context: ../
+      secrets:
+        - modular_key
+    # When GPU support is available
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           capabilities: [gpu]
+    volumes:
+      - ../:/workspace
+      - poetry_cache:/home/vscode/.cache/pypoetry
+
+secrets:
+  modular_key:
+    file: ../secrets/modular_key
+
+volumes:
+  poetry_cache:
+    external: true

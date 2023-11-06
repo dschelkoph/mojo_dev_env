@@ -1,0 +1,59 @@
+// For format details, see https://aka.ms/devcontainer.json.
+{
+    "dockerComposeFile": [
+        "docker-compose.yaml"
+    ],
+    "name": "${localWorkspaceFolderBasename}",
+    "service": "devcontainer",
+    "workspaceFolder": "/workspace",
+    "postCreateCommand": ".devcontainer/lifecycle_hooks/post_create.bash",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "[python]": {
+                    "editor.codeActionsOnSave": {
+                        "source.fixAll.ruff": true,
+                        "source.organizeImports.ruff": true
+                    },
+                    "editor.defaultFormatter": "charliermarsh.ruff"
+                },
+                "[mojo]": {
+                    "editor.defaultFormatter": "modular-mojotools.vscode-mojo"
+                },
+                "editor.formatOnSave": true,
+                "editor.guides.bracketPairs": "active",
+                "editor.stickyScroll.enabled": true,
+                "editor.suggest.matchOnWordStartOnly": false,
+                "files.autoSave": "afterDelay",
+                "files.autoSaveDelay": 60000,
+                "files.exclude": {
+                    "**/.git": true,
+                    "**/.svn": true,
+                    "**/.hg": true,
+                    "**/CVS": true,
+                    "**/.DS_Store": true,
+                    "**/Thumbs.db": true,
+                    ".pytest_cache": true
+                },
+                "files.trimTrailingWhitespace": true,
+                "python.defaultInterpreterPath": "/home/dev/.venv/project/bin/python",
+                "python.testing.pytestEnabled": true,
+                "ruff.path": [
+                    "/home/dev/.local/bin/ruff"
+                ]
+            },
+            // Add the IDs of extensions you want installed when the container is created.
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ritwickdey.liveserver",
+                "njpwerner.autodocstring",
+                "ryanluker.vscode-coverage-gutters",
+                "tamasfe.even-better-toml",
+                "charliermarsh.ruff",
+                "modular-mojotools.vscode-mojo",
+                "ms-toolsai.jupyter"
+            ]
+        }
+    }
+}
